@@ -1,6 +1,12 @@
 import { z } from "zod";
 
 export const envSchema = z.object({
+  BASE_URL: z
+    .string({
+      required_error: "Variable is required.",
+    })
+    .min(1, "Variable must not be empty."),
+
   // News API variables
   NEWS_API_KEY: z
     .string({
