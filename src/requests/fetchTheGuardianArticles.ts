@@ -1,17 +1,7 @@
-import { z } from "zod";
-import type { NewsApiArticle } from "@/models/news-api-article/news-api-article";
-
-type TheGuardianResponse = {
-  status: string;
-  totalResults: number;
-  articles: Array<NewsApiArticle>;
-};
-
-const theGuardianSchema = z.object({
-  status: z.string(),
-  totalResults: z.number(),
-  articles: z.array(z.custom<NewsApiArticle>()),
-});
+import {
+  theGuardianSchema,
+  type TheGuardianResponse,
+} from "@/models/the-guardian-article";
 
 export async function fetchTheGuardianArticles(
   q: string,
@@ -19,15 +9,12 @@ export async function fetchTheGuardianArticles(
 ): Promise<TheGuardianResponse> {
   const url = new URL("/search", "https://content.guardianapis.com");
   url.searchParams.append("q", q);
-  url.searchParams.append("pageSize", "10");
-  url.searchParams.append("page", String(page));
+  url.searchParams.append("pageSize", "3");
+  url.searchParams.append("currentPage", String(page));
+  url.searchParams.append("api-key", process.env.THE_GUARDIAN_API_KEY);
+  url.searchParams.append("show-fields", "body");
 
-  const response = await fetch(url, {
-    headers: {
-      "X-Api-Key": process.env.THE_GUARDIAN_API_KEY,
-    },
-  });
+  const response = await fetch(url);
   const data = await response.json();
   return theGuardianSchema.parse(data);
 }
-

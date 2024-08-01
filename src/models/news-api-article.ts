@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type NewsApiArticle = {
   source: {
     id: string;
@@ -11,3 +13,11 @@ export type NewsApiArticle = {
   publishedAt: string;
   content: string;
 };
+
+export type NewsApiResponse = {
+  status: string;
+  totalResults: number;
+  articles: Array<NewsApiArticle>;
+};
+
+export const newsApiResponseSchema = z.custom<NewsApiResponse>();
