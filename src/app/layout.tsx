@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-
+import { Header } from "@/components/organisms/header";
 import "@/styles/globals.css";
 
 const poppins = Poppins({
@@ -20,7 +20,11 @@ type RootLayoutProps = Readonly<PropsWithChildren>;
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Header />
+
+        {children}
+      </body>
     </html>
   );
 }
