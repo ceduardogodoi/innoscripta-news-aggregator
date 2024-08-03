@@ -10,7 +10,7 @@ export function ContentWrapper({
 }: ContentWrapperProps) {
   return (
     <div
-      className={cn("flex items-center justify-between p-5", className)}
+      className={cn("flex items-center justify-between p-5 mx-auto lg:max-w-screen-lg", className)}
       {...props}
     >
       {children}
