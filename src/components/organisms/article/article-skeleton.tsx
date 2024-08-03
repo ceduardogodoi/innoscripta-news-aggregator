@@ -14,14 +14,17 @@ export function ArticleSkeleton() {
 
       <ArticleContent>
         <Skeleton className="h-2 w-full" />
-        <Skeleton className="mt-0.5 h-2 w-11/12" />
+        <Skeleton className="mt-1 h-2 w-11/12" />
 
         <ArticleBody>
           <Skeleton className="h-2 w-full" />
-          <Skeleton className="mt-0.5 h-2 w-full" />
-          <Skeleton className="mt-0.5 h-2 w-full" />
-          <Skeleton className="mt-0.5 h-2 w-11/12" />
-          <Skeleton className="mt-0.5 h-2 w-10/12" />
+          {Array.from<null>({ length: 7 })
+            .fill(null)
+            .map((_, index) => (
+              <Skeleton key={index} className="mt-1 h-2 w-full" />
+            ))}
+          <Skeleton className="mt-1 h-2 w-11/12" />
+          <Skeleton className="mt-1 h-2 w-10/12" />
         </ArticleBody>
       </ArticleContent>
 

@@ -5,11 +5,12 @@ import {
 
 export async function fetchNewsApiArticles(
   q: string,
-  page: number
+  page: number,
+  pageSize: number,
 ): Promise<NewsApiResponse> {
   const url = new URL("/v2/everything", "https://newsapi.org");
   url.searchParams.append("q", q);
-  url.searchParams.append("pageSize", "3");
+  url.searchParams.append("pageSize", String(pageSize) ?? "3");
   url.searchParams.append("page", String(page));
 
   const response = await fetch(url, {
