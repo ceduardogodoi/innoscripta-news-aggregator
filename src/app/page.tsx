@@ -7,39 +7,44 @@ import { ArticleCard } from "@/components/organisms/article/article-card";
 import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
+import { ArticleSkeleton } from "@/components/organisms/article/article-skeleton";
 
 export default function HomePage() {
   return (
     <>
       <h1>Homepage</h1>
 
-      <ArticleCard href="https://google.com">
-        <ArticleHeader>
-          <ArticleImage
-            src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg"
-            alt="Dogs"
-          />
-        </ArticleHeader>
+      <ul className="flex flex-col gap-4">
+        <ArticleSkeleton />
 
-        <ArticleContent>
-          <ArticleTitle>
-            John Lewis to make final journey across Edmund Pettus Bridge in
-            procession
-          </ArticleTitle>
+        <ArticleCard href="https://google.com">
+          <ArticleHeader>
+            <ArticleImage
+              src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg"
+              alt="Dogs"
+            />
+          </ArticleHeader>
 
-          <ArticleBody>
-            The body of the late US Rep. John Lewis on Sunday will make the
-            final journey across the famous bridge in Selma..
-          </ArticleBody>
-        </ArticleContent>
+          <ArticleContent>
+            <ArticleTitle>
+              John Lewis to make final journey across Edmund Pettus Bridge in
+              procession
+            </ArticleTitle>
 
-        <ArticleFooter>
-          <ArticleDate dateTime="2024-08-02T15:19:00.000">
-            2 hours ago
-          </ArticleDate>
-          <ArticleAuthor>By Lucy Hiddleston</ArticleAuthor>
-        </ArticleFooter>
-      </ArticleCard>
+            <ArticleBody>
+              The body of the late US Rep. John Lewis on Sunday will make the
+              final journey across the famous bridge in Selma..
+            </ArticleBody>
+          </ArticleContent>
+
+          <ArticleFooter>
+            <ArticleDate dateTime="2024-08-02T15:19:00.000">
+              2 hours ago
+            </ArticleDate>
+            <ArticleAuthor>By Lucy Hiddleston</ArticleAuthor>
+          </ArticleFooter>
+        </ArticleCard>
+      </ul>
     </>
   );
 }

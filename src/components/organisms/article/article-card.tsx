@@ -1,18 +1,27 @@
+import type { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef } from "react";
 
-type ArticleCardProps = ComponentPropsWithoutRef<typeof Link>;
+type LinkProps = ComponentPropsWithoutRef<typeof Link>;
+
+type ArticleCardProps = PropsWithChildren<{
+  href?: LinkProps["href"];
+}>;
 
 export function ArticleCard({ children, href, ...props }: ArticleCardProps) {
   return (
-    <Link
-      className="group max-w-80 rounded bg-white pb-6 shadow-lg"
-      href={href}
-      target="_blank"
-      title={`Go to ${href}`}
-      {...props}
-    >
-      {children}
-    </Link>
+    <li className="group max-w-80 list-none rounded bg-white pb-6 shadow-lg">
+      {href != null ? (
+        <Link
+          href={href}
+          target="_blank"
+          title={`Open article ${href}`}
+          {...props}
+        >
+          {children}
+        </Link>
+      ) : (
+        children
+      )}
+    </li>
   );
 }

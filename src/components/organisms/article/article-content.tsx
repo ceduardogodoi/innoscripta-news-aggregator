@@ -1,5 +1,16 @@
-import type { PropsWithChildren } from "react";
+import { cn } from "@/lib/utils";
+import type { ComponentPropsWithoutRef } from "react";
 
-export function ArticleContent({ children }: PropsWithChildren) {
-  return <div className="px-6 py-3">{children}</div>;
+type ArticleContentProps = ComponentPropsWithoutRef<"div">;
+
+export function ArticleContent({
+  children,
+  className,
+  ...props
+}: ArticleContentProps) {
+  return (
+    <div className={cn("px-6 py-3", className)} {...props}>
+      {children}
+    </div>
+  );
 }
