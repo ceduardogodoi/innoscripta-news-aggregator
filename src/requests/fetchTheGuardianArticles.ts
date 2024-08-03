@@ -5,14 +5,16 @@ import {
 
 export async function fetchTheGuardianArticles(
   q: string,
-  page: number
+  page: number,
+  pageSize?: number,
 ): Promise<TheGuardianResponse> {
   const url = new URL("/search", "https://content.guardianapis.com");
   url.searchParams.append("q", q);
-  url.searchParams.append("pageSize", "3");
+  url.searchParams.append("page-size", String(pageSize));
   url.searchParams.append("currentPage", String(page));
   url.searchParams.append("api-key", process.env.THE_GUARDIAN_API_KEY);
-  url.searchParams.append("show-fields", "body");
+  url.searchParams.append("show-fields", "body,thumbnail,publication");
+  url.searchParams.append("show-references", "author");
 
   const response = await fetch(url);
   const data = await response.json();

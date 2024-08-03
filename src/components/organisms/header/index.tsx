@@ -21,7 +21,7 @@ export function Header() {
             </span>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <Navbar />
 
             <SearchBar />

@@ -6,7 +6,7 @@ import {
 export async function fetchNewsApiArticles(
   q: string,
   page: number,
-  pageSize: number,
+  pageSize?: number,
 ): Promise<NewsApiResponse> {
   const url = new URL("/v2/everything", "https://newsapi.org");
   url.searchParams.append("q", q);

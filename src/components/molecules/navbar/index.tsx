@@ -1,25 +1,32 @@
+import { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { ExternalLinkIcon } from "lucide-react";
 
-export function Navbar() {
+type NavbarProps = ComponentPropsWithoutRef<"ul">;
+
+export function Navbar({ className, ...props }: NavbarProps) {
   return (
-    <ul className="hidden gap-[inherit] lg:flex">
-      <li className="group">
+    <ul {...props} className={cn("hidden gap-[inherit] lg:flex", className)}>
+      <li className="group inline-flex">
         <Link
-          className="border-b border-b-transparent transition-all group-hover:border-b-red-500"
+          className="ml-auto flex items-center gap-1 border-b border-b-transparent transition-all lg:ml-0 lg:group-hover:border-b-red-500"
           target="_blank"
           href="https://www.theguardian.com/international"
         >
           The Guardian
+          <ExternalLinkIcon size={16} />
         </Link>
       </li>
 
-      <li className="group">
+      <li className="group inline-flex">
         <Link
-          className="border-b border-b-transparent transition-all group-hover:border-b-red-500"
+          className="ml-auto flex items-center gap-1 border-b border-b-transparent transition-all lg:ml-0 lg:group-hover:border-b-red-500"
           target="_blank"
           href="https://www.nytimes.com/"
         >
           New York Times
+          <ExternalLinkIcon size={16} />
         </Link>
       </li>
     </ul>

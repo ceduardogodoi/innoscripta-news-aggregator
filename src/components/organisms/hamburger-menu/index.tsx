@@ -1,6 +1,7 @@
+import { MenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { MenuIcon } from "lucide-react";
+import { Navbar } from "@/components/molecules/navbar";
 
 export function HamburgerMenu() {
   return (
@@ -12,7 +13,7 @@ export function HamburgerMenu() {
       </DrawerTrigger>
 
       <DrawerContent>
-        <h2>Menu content</h2>
+        <Navbar className="flex flex-col gap-4 p-5" />
       </DrawerContent>
     </Drawer>
   );

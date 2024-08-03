@@ -8,36 +8,38 @@ import { ArticleBody } from "@/components/organisms/article/article-body";
 import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
-import { fetchNewsApiArticles } from "@/requests/fetchNewsApiArticles";
+import { fetchTheGuardianArticles } from "@/requests/fetchTheGuardianArticles";
 
-export async function NewsApiSource() {
-  const response = await fetchNewsApiArticles("inflation", 1, 3);
+export async function TheGuardianSource() {
+  const data = await fetchTheGuardianArticles("inflation", 1, 3);
 
   return (
     <ArticleList>
-      {response.articles.map((article) => {
-        const publishedAt = new Date(article.publishedAt).toLocaleDateString();
+      {data.response.results.map((article) => {
+        const publishedAt = new Date(
+          article.webPublicationDate,
+        ).toLocaleDateString();
 
         return (
-          <ArticleCard key={article.url} href={article.url}>
+          <ArticleCard key={article.id} href={article.webUrl}>
             <ArticleHeader>
               <ArticleImage
-                src={article.urlToImage}
-                alt={`Article: ${article.title}`}
+                src={article.fields.thumbnail}
+                alt={`Article: ${article.webTitle}`}
               />
             </ArticleHeader>
 
             <ArticleContent>
-              <ArticleTitle>{article.title}</ArticleTitle>
+              <ArticleTitle>{article.webTitle}</ArticleTitle>
 
-              <ArticleBody>{article.content}</ArticleBody>
+              <ArticleBody>{article.fields.body}</ArticleBody>
             </ArticleContent>
 
             <ArticleFooter>
-              <ArticleDate dateTime={article.publishedAt}>
+              <ArticleDate dateTime={article.webPublicationDate}>
                 {publishedAt}
               </ArticleDate>
-              <ArticleAuthor>{article.source.name}</ArticleAuthor>
+              <ArticleAuthor>{article.fields.publication}</ArticleAuthor>
             </ArticleFooter>
           </ArticleCard>
         );

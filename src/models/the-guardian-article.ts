@@ -14,6 +14,8 @@ export type TheGuardianArticle = {
   pillarName: string;
   fields: {
     body: string;
+    thumbnail: string;
+    publication: string;
   };
 };
 
