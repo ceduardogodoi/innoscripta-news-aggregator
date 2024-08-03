@@ -11,7 +11,7 @@ type ArticleCardProps = Readonly<
 
 export function ArticleCard({ children, href, ...props }: ArticleCardProps) {
   return (
-    <li className="group h-fit w-full max-w-80 list-none rounded bg-white pb-6">
+    <li className="group h-fit w-full list-none rounded bg-white pb-6 shadow-xl lg:max-w-80">
       {href != null ? (
         <Link
           href={href}
