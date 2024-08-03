@@ -7,6 +7,7 @@ import { ArticleCard } from "@/components/organisms/article/article-card";
 import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
+import { ArticleList } from "@/components/organisms/article/article-list";
 import { ArticleSkeleton } from "@/components/organisms/article/article-skeleton";
 
 export default function HomePage() {
@@ -14,7 +15,7 @@ export default function HomePage() {
     <>
       <h1>Homepage</h1>
 
-      <ul className="flex flex-col gap-4">
+      <ArticleList>
         <ArticleSkeleton />
 
         <ArticleCard href="https://google.com">
@@ -33,7 +34,7 @@ export default function HomePage() {
 
             <ArticleBody>
               The body of the late US Rep. John Lewis on Sunday will make the
-              final journey across the famous bridge in Selma..
+              final journey across the famous bridge in Selma.
             </ArticleBody>
           </ArticleContent>
 
@@ -44,7 +45,7 @@ export default function HomePage() {
             <ArticleAuthor>By Lucy Hiddleston</ArticleAuthor>
           </ArticleFooter>
         </ArticleCard>
-      </ul>
+      </ArticleList>
     </>
   );
 }

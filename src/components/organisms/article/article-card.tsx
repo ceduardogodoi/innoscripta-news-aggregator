@@ -9,7 +9,7 @@ type ArticleCardProps = PropsWithChildren<{
 
 export function ArticleCard({ children, href, ...props }: ArticleCardProps) {
   return (
-    <li className="group max-w-80 list-none rounded bg-white pb-6 shadow-lg">
+    <li className="group h-fit w-full max-w-80 list-none rounded bg-white pb-6">
       {href != null ? (
         <Link
           href={href}
