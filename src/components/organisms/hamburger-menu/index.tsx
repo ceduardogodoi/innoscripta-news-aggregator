@@ -5,7 +5,7 @@ import { MenuIcon } from "lucide-react";
 export function HamburgerMenu() {
   return (
     <Drawer direction="bottom">
-      <DrawerTrigger asChild>
+      <DrawerTrigger className="xl:hidden" asChild>
         <Button variant="ghost" size="fit">
           <MenuIcon size={24} />
         </Button>
