@@ -8,8 +8,15 @@ export function Header() {
   return (
     <header className="bg-white">
       <ContentWrapper>
-        <Link href="/">
-          <NewspaperIcon size={64} className="text-blue-900" />
+        <Link href="/" className="flex gap-1">
+          <NewspaperIcon size={64} className="text-red-700" />
+          <span className="text-xs font-semibold text-red-800">
+            The
+            <br />
+            News
+            <br />
+            Aggregator
+          </span>
         </Link>
 
         <div className="flex items-center justify-center gap-8">
