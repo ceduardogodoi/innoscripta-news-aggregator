@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef } from "react";
 
-type ArticleContentProps = ComponentPropsWithoutRef<"div">;
+type ArticleContentProps = Readonly<ComponentPropsWithoutRef<"div">>;
 
 export function ArticleContent({
   children,

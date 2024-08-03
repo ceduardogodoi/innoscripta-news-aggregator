@@ -3,9 +3,11 @@ import Link from "next/link";
 
 type LinkProps = ComponentPropsWithoutRef<typeof Link>;
 
-type ArticleCardProps = PropsWithChildren<{
-  href?: LinkProps["href"];
-}>;
+type ArticleCardProps = Readonly<
+  PropsWithChildren<{
+    href?: LinkProps["href"];
+  }>
+>;
 
 export function ArticleCard({ children, href, ...props }: ArticleCardProps) {
   return (

@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
-type ContentWrapperProps = ComponentPropsWithoutRef<"div">;
+type ContentWrapperProps = Readonly<ComponentPropsWithoutRef<"div">>;
 
 export function ContentWrapper({
   children,

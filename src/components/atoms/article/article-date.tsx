@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-type ArticleDateProps = ComponentPropsWithoutRef<"time">;
+type ArticleDateProps = Readonly<ComponentPropsWithoutRef<"time">>;
 
 export function ArticleDate({ children, ...props }: ArticleDateProps) {
   return (
