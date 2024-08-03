@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { NewspaperIcon } from "lucide-react";
 import { HamburgerMenu } from "@/components/organisms/hamburger-menu";
-import { SearchBar } from "@/components/molecules/search";
+import { SearchBar } from "@/components/molecules/search-bar";
+import { ContentWrapper } from "@/components/organisms/content-wrapper";
 
 export function Header() {
   return (
     <header className="bg-white">
-      <div className="flex items-center justify-between p-5">
+      <ContentWrapper>
         <Link href="/">
           <NewspaperIcon size={64} className="text-blue-900" />
         </Link>
@@ -16,7 +17,7 @@ export function Header() {
 
           <HamburgerMenu />
         </div>
-      </div>
+      </ContentWrapper>
     </header>
   );
 }

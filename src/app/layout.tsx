@@ -2,6 +2,7 @@ import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Header } from "@/components/organisms/header";
+import { ContentWrapper } from "@/components/organisms/content-wrapper";
 import "@/styles/globals.css";
 
 const poppins = Poppins({
@@ -23,7 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={poppins.className}>
         <Header />
 
-        {children}
+        <main>
+          <ContentWrapper className="flex-col items-stretch">
+            {children}
+          </ContentWrapper>
+        </main>
       </body>
     </html>
   );
