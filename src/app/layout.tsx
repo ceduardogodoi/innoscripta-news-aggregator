@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Header } from "@/components/organisms/header";
 import { ContentWrapper } from "@/components/organisms/content-wrapper";
+import { Footer } from "@/components/organisms/footer";
 import "@/styles/globals.css";
 
 const poppins = Poppins({
@@ -29,6 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             {children}
           </ContentWrapper>
         </main>
+
+        <Footer />
       </body>
     </html>
   );
