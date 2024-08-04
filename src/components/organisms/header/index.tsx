@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { NewspaperIcon } from "lucide-react";
 import { HamburgerMenu } from "@/components/organisms/hamburger-menu";
-import { SearchBar } from "@/components/molecules/search-bar";
 import { ContentWrapper } from "@/components/organisms/content-wrapper";
 import { Navbar } from "@/components/molecules/navbar";
 
@@ -10,21 +9,27 @@ export function Header() {
     <header className="bg-white">
       <nav>
         <ContentWrapper>
-          <Link href="/" title="Go to the homepage" className="flex gap-1">
-            <NewspaperIcon size={64} className="text-red-700" />
-            <span className="text-xs font-semibold text-red-800">
-              The
-              <br />
-              News
-              <br />
-              Aggregator
-            </span>
+          <Link
+            href="/"
+            title="Go to the homepage"
+            className="group flex gap-1 text-xs font-semibold text-red-700"
+          >
+            <NewspaperIcon size={64} />
+            <div className="flex flex-col">
+              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+                The
+              </span>
+              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+                News
+              </span>
+              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+                Aggregator
+              </span>
+            </div>
           </Link>
 
           <div className="flex items-center gap-6">
             <Navbar />
-
-            <SearchBar />
 
             <HamburgerMenu />
           </div>

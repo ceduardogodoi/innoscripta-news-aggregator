@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import { ArticleList } from "@/components/organisms/article/article-list";
 import { ArticleSkeleton } from "@/components/organisms/article/article-skeleton";
-import { NewsApiSource } from "./news-api-source";
-import { TheGuardianSource } from "./the-guardian-source";
+import { NewsApiSource } from "@/components/organisms/news-source/news-api-source";
+import { TheGuardianSource } from "@/components/organisms/news-source/the-guardian-source";
+import { NytSouce } from "@/components/organisms/news-source/nyt-source";
 
 export function NewsSource() {
   return (
@@ -34,6 +35,21 @@ export function NewsSource() {
         }
       >
         <TheGuardianSource />
+      </Suspense>
+
+      {/* The New York Times */}
+      <h2 className="text-lg font-semibold text-red-700">The New York Times</h2>
+
+      <Suspense
+        fallback={
+          <ArticleList>
+            <ArticleSkeleton />
+            <ArticleSkeleton />
+            <ArticleSkeleton />
+          </ArticleList>
+        }
+      >
+        <NytSouce />
       </Suspense>
     </div>
   );

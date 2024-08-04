@@ -8,7 +8,7 @@ import { ArticleBody } from "@/components/organisms/article/article-body";
 import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
-import { fetchNewsApiArticles } from "@/requests/fetchNewsApiArticles";
+import { fetchNewsApiArticles } from "@/requests/fetch-news-api-articles";
 
 export async function NewsApiSource() {
   const response = await fetchNewsApiArticles("inflation", 1, 3);

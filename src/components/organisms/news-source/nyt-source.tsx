@@ -8,38 +8,38 @@ import { ArticleBody } from "@/components/organisms/article/article-body";
 import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
-import { fetchTheGuardianArticles } from "@/requests/fetch-the-guardian-articles";
+import { fetchTheNewYorkTimesArticles } from "@/requests/fetch-the-new-york-articles";
 
-export async function TheGuardianSource() {
-  const data = await fetchTheGuardianArticles("inflation", 1, 3);
+const baseUrl = `https://www.nytimes.com/`;
+
+export async function NytSouce() {
+  const response = await fetchTheNewYorkTimesArticles("inflation");
 
   return (
     <ArticleList>
-      {data.response.results.map((article) => {
-        const publishedAt = new Date(
-          article.webPublicationDate,
-        ).toLocaleDateString();
+      {response.response.docs.map((article) => {
+        const publishedAt = new Date(article.pub_date).toLocaleDateString();
 
         return (
-          <ArticleCard key={article.id} href={article.webUrl}>
+          <ArticleCard key={article._id} href={article.web_url}>
             <ArticleHeader>
               <ArticleImage
-                src={article.fields.thumbnail}
-                alt={`Article: ${article.webTitle}`}
+                src={`${baseUrl}${article.multimedia[0].url}`}
+                alt={`Article: ${article.headline.main}`}
               />
             </ArticleHeader>
 
             <ArticleContent>
-              <ArticleTitle>{article.webTitle}</ArticleTitle>
+              <ArticleTitle>{article.headline.main}</ArticleTitle>
 
-              <ArticleBody>{article.fields.body}</ArticleBody>
+              <ArticleBody>{article.snippet}</ArticleBody>
             </ArticleContent>
 
             <ArticleFooter>
-              <ArticleDate dateTime={article.webPublicationDate}>
+              <ArticleDate dateTime={article.pub_date}>
                 {publishedAt}
               </ArticleDate>
-              <ArticleAuthor>{article.fields.publication}</ArticleAuthor>
+              <ArticleAuthor>{article.source}</ArticleAuthor>
             </ArticleFooter>
           </ArticleCard>
         );
