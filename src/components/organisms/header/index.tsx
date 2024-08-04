@@ -16,13 +16,13 @@ export function Header() {
           >
             <NewspaperIcon size={64} />
             <div className="flex flex-col">
-              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+              <span className="w-fit border-b border-b-transparent lg:group-hover:border-b-red-700">
                 The
               </span>
-              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+              <span className="w-fit border-b border-b-transparent lg:group-hover:border-b-red-700">
                 News
               </span>
-              <span className="w-fit border-b border-b-transparent group-hover:border-b-red-700">
+              <span className="w-fit border-b border-b-transparent lg:group-hover:border-b-red-700">
                 Aggregator
               </span>
             </div>
