@@ -18,7 +18,7 @@ export async function fetchTheNewYorkTimesArticles(
   const response = await fetch(url);
   const data = await response.json();
 
-  let result = theNewYorkTimesSchema.parse(data);
+  const result = theNewYorkTimesSchema.parse(data);
   result.response.docs = result.response.docs.filter(
     (_, index) => index < pageSize,
   );
