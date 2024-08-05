@@ -27,17 +27,17 @@ export function Footer() {
 
         <ul className="flex items-center gap-4">
           <li>
-            <Link href="#">
+            <Link href="https://linkedin.com" target="_blank">
               <LinkedinIcon />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="https://instagram.com" target="_blank">
               <InstagramIcon />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="https://facebook.com" target="_blank">
               <FacebookIcon />
             </Link>
           </li>
