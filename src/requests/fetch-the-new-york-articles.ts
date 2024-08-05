@@ -5,6 +5,7 @@ import {
 
 export async function fetchTheNewYorkTimesArticles(
   q: string,
+  pageSize = 3,
 ): Promise<TheNewYorkTimesArticleResponse> {
   const url = new URL(
     "/svc/search/v2/articlesearch.json",
@@ -17,6 +18,8 @@ export async function fetchTheNewYorkTimesArticles(
   const data = await response.json();
 
   let result = theNewYorkTimesSchema.parse(data);
-  result.response.docs = result.response.docs.filter((_, index) => index < 3);
+  result.response.docs = result.response.docs.filter(
+    (_, index) => index < pageSize,
+  );
   return result;
 }

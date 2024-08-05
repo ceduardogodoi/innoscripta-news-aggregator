@@ -6,7 +6,7 @@ import {
 export async function fetchTheGuardianArticles(
   q: string,
   page: number,
-  pageSize?: number,
+  pageSize = 3,
 ): Promise<TheGuardianResponse> {
   const url = new URL("/search", "https://content.guardianapis.com");
   url.searchParams.append("q", q);
@@ -14,7 +14,6 @@ export async function fetchTheGuardianArticles(
   url.searchParams.append("currentPage", String(page));
   url.searchParams.append("api-key", process.env.THE_GUARDIAN_API_KEY);
   url.searchParams.append("show-fields", "body,thumbnail,publication");
-  url.searchParams.append("show-references", "author");
 
   const response = await fetch(url);
   const data = await response.json();

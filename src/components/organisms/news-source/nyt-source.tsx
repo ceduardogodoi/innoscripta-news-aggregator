@@ -9,15 +9,21 @@ import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
 import { fetchTheNewYorkTimesArticles } from "@/requests/fetch-the-new-york-articles";
+import { HomePageProps } from "@/app/page";
 
 const baseUrl = `https://www.nytimes.com/`;
 
-export async function NytSouce() {
-  const response = await fetchTheNewYorkTimesArticles("inflation");
+type NytSourceProps = {
+  searchParams: HomePageProps["searchParams"];
+};
+
+export async function NytSouce({ searchParams }: NytSourceProps) {
+  const { q: query = "europe" } = searchParams;
+  const data = await fetchTheNewYorkTimesArticles(query);
 
   return (
     <ArticleList>
-      {response.response.docs.map((article) => {
+      {data.response.docs.map((article) => {
         const publishedAt = new Date(article.pub_date).toLocaleDateString();
 
         return (

@@ -5,17 +5,27 @@ import { NewsApiSource } from "@/components/organisms/news-source/news-api-sourc
 import { TheGuardianSource } from "@/components/organisms/news-source/the-guardian-source";
 import { NytSouce } from "@/components/organisms/news-source/nyt-source";
 import { SearchBar } from "@/components/molecules/search-bar";
+import type { HomePageProps } from "@/app/page";
 
-export function NewsSource() {
+type NewsSourceProps = {
+  searchParams: HomePageProps["searchParams"];
+};
+
+export function NewsSource({ searchParams }: NewsSourceProps) {
+  const { q: query } = searchParams;
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-[inherit]">
-        <SearchBar />
+        <SearchBar defaultValue={query} />
 
-        <p>
-          Showing results for: &quot;<span className="text-red-700">term</span>
-          &quot;
-        </p>
+        {query != null && (
+          <p>
+            Showing results for: &quot;
+            <span className="text-red-700">{query}</span>
+            &quot;
+          </p>
+        )}
       </div>
 
       {/* The Guardian */}
@@ -30,7 +40,7 @@ export function NewsSource() {
           </ArticleList>
         }
       >
-        <TheGuardianSource />
+        <TheGuardianSource searchParams={searchParams} />
       </Suspense>
 
       {/* The New York Times */}
@@ -45,7 +55,7 @@ export function NewsSource() {
           </ArticleList>
         }
       >
-        <NytSouce />
+        <NytSouce searchParams={searchParams} />
       </Suspense>
 
       {/* News API */}
@@ -60,7 +70,7 @@ export function NewsSource() {
           </ArticleList>
         }
       >
-        <NewsApiSource />
+        <NewsApiSource searchParams={searchParams} />
       </Suspense>
     </div>
   );

@@ -9,9 +9,15 @@ import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
 import { fetchNewsApiArticles } from "@/requests/fetch-news-api-articles";
+import { HomePageProps } from "@/app/page";
 
-export async function NewsApiSource() {
-  const response = await fetchNewsApiArticles("inflation", 1, 3);
+type NewsApiSourceProps = {
+  searchParams: HomePageProps["searchParams"];
+};
+
+export async function NewsApiSource({ searchParams }: NewsApiSourceProps) {
+  const { q: query = "europe" } = searchParams;
+  const response = await fetchNewsApiArticles(query, 1, 10);
 
   return (
     <ArticleList>
@@ -22,7 +28,7 @@ export async function NewsApiSource() {
           <ArticleCard key={article.url} href={article.url}>
             <ArticleHeader>
               <ArticleImage
-                src={article.urlToImage}
+                src={article.urlToImage!}
                 alt={`Article: ${article.title}`}
               />
             </ArticleHeader>

@@ -11,12 +11,12 @@ type ArticleCardProps = Readonly<
 
 export function ArticleCard({ children, href, ...props }: ArticleCardProps) {
   return (
-    <li className="group relative block h-full max-h-[23rem] min-h-[23rem] w-full list-none rounded bg-white shadow-xl lg:max-w-80">
+    <li className="group relative block size-full max-h-[23rem] min-h-[23rem] list-none rounded bg-white shadow-xl lg:max-w-80">
       {href != null ? (
         <Link
           href={href}
           target="_blank"
-          title={`Click to go to ${href}`}
+          title={`View the full article at ${href}`}
           {...props}
         >
           {children}

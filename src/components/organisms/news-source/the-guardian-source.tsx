@@ -9,9 +9,17 @@ import { ArticleContent } from "@/components/organisms/article/article-content";
 import { ArticleFooter } from "@/components/organisms/article/article-footer";
 import { ArticleHeader } from "@/components/organisms/article/article-header";
 import { fetchTheGuardianArticles } from "@/requests/fetch-the-guardian-articles";
+import type { HomePageProps } from "@/app/page";
 
-export async function TheGuardianSource() {
-  const data = await fetchTheGuardianArticles("inflation", 1, 3);
+type TheGuardianSourceProps = {
+  searchParams: HomePageProps["searchParams"];
+};
+
+export async function TheGuardianSource({
+  searchParams,
+}: TheGuardianSourceProps) {
+  const { q: query = "europe" } = searchParams;
+  const data = await fetchTheGuardianArticles(query, 1, 3);
 
   return (
     <ArticleList>

@@ -1,9 +1,11 @@
 import { NewsSource } from "@/components/organisms/news-source";
 
-export default function HomePage() {
-  return (
-    <>
-      <NewsSource />
-    </>
-  );
+export type HomePageProps = {
+  searchParams: {
+    q?: string;
+  };
+};
+
+export default function HomePage(props: HomePageProps) {
+  return <NewsSource searchParams={props.searchParams} />;
 }
