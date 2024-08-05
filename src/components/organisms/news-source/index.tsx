@@ -19,7 +19,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       <div className="flex flex-col gap-[inherit]">
         <SearchBar defaultValue={query} />
 
-        {query != null && (
+        {query != null && query.length > 0 && (
           <p>
             Showing results for: &quot;
             <span className="text-red-700">{query}</span>

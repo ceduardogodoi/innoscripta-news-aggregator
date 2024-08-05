@@ -18,8 +18,8 @@ type TheGuardianSourceProps = {
 export async function TheGuardianSource({
   searchParams,
 }: TheGuardianSourceProps) {
-  const { q: query = "europe" } = searchParams;
-  const data = await fetchTheGuardianArticles(query, 1, 3);
+  const { q: query } = searchParams;
+  const data = await fetchTheGuardianArticles(1, query);
 
   return (
     <ArticleList>

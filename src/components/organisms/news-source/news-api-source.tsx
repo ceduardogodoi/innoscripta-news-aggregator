@@ -16,8 +16,8 @@ type NewsApiSourceProps = {
 };
 
 export async function NewsApiSource({ searchParams }: NewsApiSourceProps) {
-  const { q: query = "europe" } = searchParams;
-  const response = await fetchNewsApiArticles(query, 1, 10);
+  const { q: query } = searchParams;
+  const response = await fetchNewsApiArticles(1, query, 10);
 
   return (
     <ArticleList>

@@ -18,7 +18,7 @@ type NytSourceProps = {
 };
 
 export async function NytSouce({ searchParams }: NytSourceProps) {
-  const { q: query = "europe" } = searchParams;
+  const { q: query } = searchParams;
   const data = await fetchTheNewYorkTimesArticles(query);
 
   return (

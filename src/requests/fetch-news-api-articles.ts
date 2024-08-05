@@ -1,3 +1,4 @@
+import { FALLBACK_SEARCH } from "@/constants";
 import {
   NewsApiArticle,
   newsApiResponseSchema,
@@ -5,12 +6,12 @@ import {
 } from "@/models/news-api-article";
 
 export async function fetchNewsApiArticles(
-  q: string,
   page: number,
+  q?: string,
   pageSize = 3,
 ): Promise<NewsApiResponse> {
   const url = new URL("/v2/everything", "https://newsapi.org");
-  url.searchParams.append("q", q);
+  url.searchParams.append("q", q || FALLBACK_SEARCH);
   url.searchParams.append("pageSize", String(pageSize));
   url.searchParams.append("page", String(page));
 

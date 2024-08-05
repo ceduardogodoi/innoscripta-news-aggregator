@@ -11,7 +11,7 @@ export function SearchBar({ ...props }: SearchBarProps) {
       <Input
         name="q"
         type="search"
-        placeholder="Keywords or terms"
+        placeholder="Search Keywords or terms"
         className="rounded-sm font-bold placeholder:font-light lg:p-6 lg:text-lg"
         {...props}
       />
