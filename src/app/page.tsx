@@ -1,8 +1,10 @@
 import { NewsSource } from "@/components/organisms/news-source";
+import { DateRangeValue } from "@/constants";
 
 export type HomePageProps = {
   searchParams: {
     q?: string;
+    "date-range"?: DateRangeValue;
   };
 };
 

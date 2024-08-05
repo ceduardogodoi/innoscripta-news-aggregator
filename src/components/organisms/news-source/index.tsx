@@ -12,12 +12,12 @@ type NewsSourceProps = {
 };
 
 export function NewsSource({ searchParams }: NewsSourceProps) {
-  const { q: query } = searchParams;
+  const { q: query, "date-range": dateRange } = searchParams;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-[inherit]">
-        <SearchBar defaultValue={query} />
+        <SearchBar defaultValue={query} dateRange={dateRange} />
 
         {query != null && query.length > 0 && (
           <p>
