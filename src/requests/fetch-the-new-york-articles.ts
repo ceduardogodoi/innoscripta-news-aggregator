@@ -4,6 +4,7 @@ import {
   PAGE_SIZE,
   PAST_MONTH_NYT,
   PAST_WEEK_NYT,
+  PAST_YEAR_NYT,
   TODAY_NYT,
   YESTERDAY_NYT,
 } from "@/constants";
@@ -41,6 +42,10 @@ export async function fetchTheNewYorkTimesArticles({
       break;
     case "past-month":
       url.searchParams.append("from-date", PAST_MONTH_NYT);
+      url.searchParams.append("to-date", TODAY_NYT);
+      break;
+    case "past-year":
+      url.searchParams.append("from-date", PAST_YEAR_NYT);
       url.searchParams.append("to-date", TODAY_NYT);
       break;
     case "any-time":

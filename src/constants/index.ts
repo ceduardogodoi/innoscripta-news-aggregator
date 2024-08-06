@@ -19,6 +19,10 @@ export const DATE_RANGES = [
     value: "past-month",
     label: "Past month",
   },
+  {
+    value: "past-year",
+    label: "Past year",
+  },
 ] as const;
 
 export const PAGE_SIZE = 3;
@@ -26,6 +30,7 @@ export const PAGE_SIZE = 3;
 export type DateRangeValue = (typeof DATE_RANGES)[number]["value"];
 
 // YYYY-MM-DD
+export const PAST_YEAR = dayjs().subtract(1, "year").format("YYYY-MM-DD");
 export const PAST_MONTH = dayjs().subtract(1, "month").format("YYYY-MM-DD");
 export const PAST_WEEK = dayjs().subtract(1, "week").format("YYYY-MM-DD");
 
@@ -33,9 +38,12 @@ export const YESTERDAY = dayjs().subtract(1, "day").format("YYYY-MM-DD");
 export const TODAY = dayjs().format("YYYY-MM-DD");
 
 // YYYYMMDD
-export const [PAST_MONTH_NYT, PAST_WEEK_NYT, YESTERDAY_NYT, TODAY_NYT] = [
-  PAST_MONTH,
-  PAST_WEEK,
-  YESTERDAY,
-  TODAY,
-].map((strDate) => strDate.replaceAll("-", ""));
+export const [
+  PAST_YEAR_NYT,
+  PAST_MONTH_NYT,
+  PAST_WEEK_NYT,
+  YESTERDAY_NYT,
+  TODAY_NYT,
+] = [PAST_YEAR, PAST_MONTH, PAST_WEEK, YESTERDAY, TODAY].map((strDate) =>
+  strDate.replaceAll("-", ""),
+);

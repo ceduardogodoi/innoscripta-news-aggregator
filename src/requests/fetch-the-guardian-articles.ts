@@ -4,6 +4,7 @@ import {
   PAGE_SIZE,
   PAST_MONTH,
   PAST_WEEK,
+  PAST_YEAR,
   TODAY,
   YESTERDAY,
 } from "@/constants";
@@ -43,6 +44,10 @@ export async function fetchTheGuardianArticles({
       break;
     case "past-month":
       url.searchParams.append("from-date", PAST_MONTH);
+      url.searchParams.append("to-date", TODAY);
+      break;
+    case "past-year":
+      url.searchParams.append("from-date", PAST_YEAR);
       url.searchParams.append("to-date", TODAY);
       break;
     case "any-time":
