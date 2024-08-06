@@ -1,10 +1,10 @@
 "use client";
 
-import { type PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren } from "react";
 import { StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SOURCES_VALUE_LABEL_MAP, SourceValue } from "@/constants";
-import { storage } from "@/utils/storage";
+import { useFavoriteSource } from "@/hooks/useFavoriteSource";
 
 type SourceTitleProps = PropsWithChildren<{
   sourceValue: SourceValue;
@@ -14,33 +14,7 @@ export function SourceTitle({
   sourceValue,
   children,
 }: Readonly<SourceTitleProps>) {
-  const [state, setState] = useState({
-    isFavorite: false,
-    isLoading: true,
-  });
-
-  // TODO: encapsulate in a custom hook
-  useEffect(() => {
-    const isSourceFavorite = storage.isFavoriteSource(sourceValue);
-
-    setState({
-      isLoading: false,
-      isFavorite: isSourceFavorite,
-    });
-  }, []);
-
-  function handleToggleAddToFavoriteSources() {
-    if (state.isFavorite) {
-      storage.removeFavoriteSource(sourceValue);
-    } else {
-      storage.addFavoriteSource(sourceValue);
-    }
-
-    setState((currentState) => ({
-      ...currentState,
-      isFavorite: !currentState.isFavorite,
-    }));
-  }
+  const { state, handleToggleFavoriteSource } = useFavoriteSource(sourceValue);
 
   return (
     <div className="flex items-center gap-2">
@@ -54,7 +28,7 @@ export function SourceTitle({
         className="disabled:text-gray-50-500 p-0 transition-all disabled:cursor-not-allowed data-[is-favorite=true]:scale-110 lg:hover:scale-110"
         title="Add to favorite sources"
         data-is-favorite={state.isFavorite}
-        onClick={handleToggleAddToFavoriteSources}
+        onClick={handleToggleFavoriteSource}
       >
         <StarIcon
           size={32}
