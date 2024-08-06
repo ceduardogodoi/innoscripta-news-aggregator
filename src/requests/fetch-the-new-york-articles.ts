@@ -5,25 +5,30 @@ import {
   PAST_MONTH_NYT,
   PAST_WEEK_NYT,
   PAST_YEAR_NYT,
+  SINGLE_SOURCE_PAGE_SIZE,
+  type SourceValue,
   TODAY_NYT,
   YESTERDAY_NYT,
 } from "@/constants";
 import {
+  TheNewYorkTimesArticle,
   type TheNewYorkTimesArticleResponse,
   theNewYorkTimesSchema,
 } from "@/models/the-new-york-times-article";
 
 type NewYorkTimesFilters = {
   q?: string;
-  pageSize?: number;
   dateRange?: DateRangeValue;
+  source?: SourceValue;
 };
 
 export async function fetchTheNewYorkTimesArticles({
   q = FALLBACK_SEARCH,
-  pageSize = PAGE_SIZE,
   dateRange = "any-time",
+  source,
 }: NewYorkTimesFilters): Promise<TheNewYorkTimesArticleResponse> {
+  const pageSize = source === "nyt" ? SINGLE_SOURCE_PAGE_SIZE - 1 : PAGE_SIZE;
+
   const url = new URL(
     "/svc/search/v2/articlesearch.json",
     "https://api.nytimes.com",
@@ -61,5 +66,6 @@ export async function fetchTheNewYorkTimesArticles({
   result.response.docs = result.response.docs.filter(
     (_, index) => index < pageSize,
   );
+
   return result;
 }

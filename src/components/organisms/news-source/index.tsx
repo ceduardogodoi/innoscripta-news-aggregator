@@ -45,51 +45,65 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       </div>
 
       {/* The Guardian */}
-      <h2 className="text-lg font-semibold text-red-700">The Guardian</h2>
+      {(source == null || source === "the-guardian") && (
+        <>
+          <h2 className="text-lg font-semibold text-red-700">The Guardian</h2>
 
-      <Suspense
-        fallback={
-          <ArticleList>
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-          </ArticleList>
-        }
-      >
-        <TheGuardianSource searchParams={searchParams} />
-      </Suspense>
+          <Suspense
+            fallback={
+              <ArticleList>
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+              </ArticleList>
+            }
+          >
+            <TheGuardianSource searchParams={searchParams} />
+          </Suspense>
+        </>
+      )}
 
       {/* The New York Times */}
-      <h2 className="text-lg font-semibold text-red-700">The New York Times</h2>
+      {(source == null || source === "nyt") && (
+        <>
+          <h2 className="text-lg font-semibold text-red-700">
+            The New York Times
+          </h2>
 
-      <Suspense
-        fallback={
-          <ArticleList>
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-          </ArticleList>
-        }
-      >
-        <NytSouce searchParams={searchParams} />
-      </Suspense>
+          <Suspense
+            fallback={
+              <ArticleList>
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+              </ArticleList>
+            }
+          >
+            <NytSouce searchParams={searchParams} />
+          </Suspense>
+        </>
+      )}
 
       {/* News API */}
-      <h2 className="text-lg font-semibold text-red-700">
-        {source ? "Miscellaneous" : "Other sources"}
-      </h2>
+      {(source == null || source === "misc") && (
+        <>
+          <h2 className="text-lg font-semibold text-red-700">
+            {source ? "Miscellaneous" : "Other sources"}
+          </h2>
 
-      <Suspense
-        fallback={
-          <ArticleList>
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-            <ArticleSkeleton />
-          </ArticleList>
-        }
-      >
-        <NewsApiSource searchParams={searchParams} />
-      </Suspense>
+          <Suspense
+            fallback={
+              <ArticleList>
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+                <ArticleSkeleton />
+              </ArticleList>
+            }
+          >
+            <NewsApiSource searchParams={searchParams} />
+          </Suspense>
+        </>
+      )}
     </div>
   );
 }

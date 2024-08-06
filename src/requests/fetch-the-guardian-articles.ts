@@ -5,6 +5,8 @@ import {
   PAST_MONTH,
   PAST_WEEK,
   PAST_YEAR,
+  SINGLE_SOURCE_PAGE_SIZE,
+  SourceValue,
   TODAY,
   YESTERDAY,
 } from "@/constants";
@@ -16,16 +18,19 @@ import {
 type TheGuardianFilters = {
   page?: number;
   q?: string;
-  pageSize?: number;
   dateRange?: DateRangeValue;
+  source?: SourceValue;
 };
 
 export async function fetchTheGuardianArticles({
   page = 1,
   q = FALLBACK_SEARCH,
-  pageSize = PAGE_SIZE,
   dateRange = "any-time",
+  source,
 }: TheGuardianFilters): Promise<TheGuardianResponse> {
+  const pageSize =
+    source === "the-guardian" ? SINGLE_SOURCE_PAGE_SIZE - 1 : PAGE_SIZE;
+
   const url = new URL("/search", "https://content.guardianapis.com");
   url.searchParams.append("q", q);
   url.searchParams.append("page-size", String(pageSize));
