@@ -7,6 +7,7 @@ import { NytSouce } from "@/components/organisms/news-source/nyt-source";
 import { SearchAndFilter } from "@/components/molecules/search-and-filter";
 import type { HomePageProps } from "@/app/page";
 import { SOURCES_VALUE_LABEL_MAP } from "@/constants";
+import { SourceTitle } from "@/components/atoms/source-title";
 
 type NewsSourceProps = {
   searchParams: HomePageProps["searchParams"];
@@ -47,7 +48,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       {/* The Guardian */}
       {(source == "all" || source === "the-guardian") && (
         <>
-          <h2 className="text-lg font-semibold text-red-700">The Guardian</h2>
+          <SourceTitle sourceValue="the-guardian" />
 
           <Suspense
             fallback={
@@ -66,9 +67,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       {/* The New York Times */}
       {(source == "all" || source === "nyt") && (
         <>
-          <h2 className="text-lg font-semibold text-red-700">
-            The New York Times
-          </h2>
+          <SourceTitle sourceValue="nyt" />
 
           <Suspense
             fallback={
@@ -87,9 +86,9 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       {/* News API */}
       {(source == "all" || source === "misc") && (
         <>
-          <h2 className="text-lg font-semibold text-red-700">
+          <SourceTitle sourceValue="misc">
             {source ? "Miscellaneous" : "Other sources"}
-          </h2>
+          </SourceTitle>
 
           <Suspense
             fallback={
