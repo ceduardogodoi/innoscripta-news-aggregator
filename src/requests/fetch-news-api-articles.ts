@@ -1,19 +1,59 @@
-import { FALLBACK_SEARCH } from "@/constants";
 import {
-  NewsApiArticle,
+  DateRangeValue,
+  FALLBACK_SEARCH,
+  PAGE_SIZE,
+  PAST_MONTH,
+  PAST_WEEK,
+  PAST_YEAR,
+  TODAY,
+  YESTERDAY,
+} from "@/constants";
+import {
+  type NewsApiArticle,
   newsApiResponseSchema,
   type NewsApiResponse,
 } from "@/models/news-api-article";
 
-export async function fetchNewsApiArticles(
-  page: number,
-  q?: string,
-  pageSize = 3,
-): Promise<NewsApiResponse> {
+type NewsApiFilters = {
+  page?: number;
+  q?: string;
+  pageSize?: number;
+  dateRange?: DateRangeValue;
+};
+
+export async function fetchNewsApiArticles({
+  page = 1,
+  q = FALLBACK_SEARCH,
+  pageSize = PAGE_SIZE,
+  dateRange = "any-time",
+}: NewsApiFilters): Promise<NewsApiResponse> {
   const url = new URL("/v2/everything", "https://newsapi.org");
   url.searchParams.append("q", q || FALLBACK_SEARCH);
   url.searchParams.append("pageSize", String(pageSize));
   url.searchParams.append("page", String(page));
+
+  switch (dateRange) {
+    case "yesterday":
+      url.searchParams.append("from", YESTERDAY);
+      url.searchParams.append("to", YESTERDAY);
+      break;
+    case "past-week":
+      url.searchParams.append("from", PAST_WEEK);
+      url.searchParams.append("to", TODAY);
+      break;
+    case "past-month":
+    // News API required a paid plan for articles
+    // too far in the past
+    case "past-year":
+      url.searchParams.append("from", PAST_MONTH);
+      url.searchParams.append("to", TODAY);
+      break;
+      break;
+    case "any-time":
+    default:
+      url.searchParams.delete("from");
+      url.searchParams.delete("to");
+  }
 
   const response = await fetch(url, {
     headers: {
@@ -22,7 +62,6 @@ export async function fetchNewsApiArticles(
   });
   const data = await response.json();
   const result = newsApiResponseSchema.parse(data);
-  result.articles[0].url;
 
   const articles: NewsApiArticle[] = [];
   for (let i = 0; i < result.articles.length; i++) {
