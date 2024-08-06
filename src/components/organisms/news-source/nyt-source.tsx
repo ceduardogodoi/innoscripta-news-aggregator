@@ -17,7 +17,7 @@ type NytSourceProps = {
   searchParams: HomePageProps["searchParams"];
 };
 
-export async function NytSource({ searchParams }: NytSourceProps) {
+export async function NytSource({ searchParams }: Readonly<NytSourceProps>) {
   const { q: query, "date-range": dateRange, source } = searchParams;
   const data = await fetchTheNewYorkTimesArticles({
     q: query,

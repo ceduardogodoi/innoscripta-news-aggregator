@@ -1,7 +1,4 @@
-import { ONE_HOUR_IN_SECONDS } from "@/constants";
-
-// time-based cache revalidation
-export const revalidate = ONE_HOUR_IN_SECONDS;
+import { FavoriteSources } from "@/components/organisms/favorite-sources";
 
 export default function MyFeed() {
   return (
@@ -9,12 +6,10 @@ export default function MyFeed() {
       <h1 className="text-2xl">My Feed</h1>
 
       <strong className="font-medium">
-        Welcome back! Here will be shown your favorite sources
+        Welcome! Here you can manage your feed and other settings.
       </strong>
 
-      <section>
-        <h3>You favorite sources:</h3>
-      </section>
+      <FavoriteSources />
     </div>
   );
 }
