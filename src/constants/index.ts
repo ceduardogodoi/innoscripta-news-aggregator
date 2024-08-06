@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
 
+// 1 hour | 3600 sec = 60 sec * 60 min
+export const ONE_HOUR_IN_SECONDS = 60 * 60;
+
 export const FALLBACK_SEARCH = "europe";
 
 export const DATE_RANGES = [

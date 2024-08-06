@@ -1,5 +1,5 @@
 import { NewsSource } from "@/components/organisms/news-source";
-import { DateRangeValue } from "@/constants";
+import { DateRangeValue, ONE_HOUR_IN_SECONDS } from "@/constants";
 
 export type HomePageProps = {
   searchParams: {
@@ -9,8 +9,7 @@ export type HomePageProps = {
 };
 
 // time-based cache revalidation
-// 1 hour | 3600 sec = 60 sec * 60 min
-export const revalidate = 60 * 60;
+export const revalidate = ONE_HOUR_IN_SECONDS;
 
 export default function HomePage(props: HomePageProps) {
   return <NewsSource searchParams={props.searchParams} />;
