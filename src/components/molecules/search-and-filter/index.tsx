@@ -18,7 +18,7 @@ type SearchBarProps = ComponentPropsWithoutRef<typeof Input> & {
   dateRange: HomePageProps["searchParams"]["date-range"];
 };
 
-export function SearchBar({ dateRange, ...props }: SearchBarProps) {
+export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleDateRange() {

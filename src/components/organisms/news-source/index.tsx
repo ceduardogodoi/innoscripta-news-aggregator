@@ -4,7 +4,7 @@ import { ArticleSkeleton } from "@/components/organisms/article/article-skeleton
 import { NewsApiSource } from "@/components/organisms/news-source/news-api-source";
 import { TheGuardianSource } from "@/components/organisms/news-source/the-guardian-source";
 import { NytSouce } from "@/components/organisms/news-source/nyt-source";
-import { SearchBar } from "@/components/molecules/search-bar";
+import { SearchAndFilter } from "@/components/molecules/search-and-filter";
 import type { HomePageProps } from "@/app/page";
 
 type NewsSourceProps = {
@@ -17,7 +17,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-[inherit]">
-        <SearchBar defaultValue={query} dateRange={dateRange} />
+        <SearchAndFilter defaultValue={query} dateRange={dateRange} />
 
         {query != null && query.length > 0 && (
           <p>
