@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { HomePageProps } from "@/app/page";
-import { DATE_RANGES } from "@/constants";
+import { DATE_RANGES, SOURCES } from "@/constants";
+import { SelectLabel } from "@radix-ui/react-select";
 
 type SearchBarProps = ComponentPropsWithoutRef<typeof Input> & {
   dateRange: HomePageProps["searchParams"]["date-range"];
@@ -21,7 +23,9 @@ type SearchBarProps = ComponentPropsWithoutRef<typeof Input> & {
 export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
-  function handleDateRange() {
+  const [miscSource, ...sources] = SOURCES;
+
+  function handleFormSubmit() {
     formRef.current?.submit();
   }
 
@@ -54,7 +58,7 @@ export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
         </div>
       </div>
 
-      <div className="flex w-full">
+      <div className="flex w-full gap-4">
         <div className="flex flex-col">
           <label className="text-lg" htmlFor="date-range">
             Date range
@@ -62,7 +66,7 @@ export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
           <Select
             name="date-range"
             defaultValue={dateRange}
-            onValueChange={handleDateRange}
+            onValueChange={handleFormSubmit}
           >
             <SelectTrigger className="w-36" id="date-range">
               <SelectValue placeholder="Any time" />
@@ -73,6 +77,37 @@ export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
                   {dateRange.label}
                 </SelectItem>
               ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="text-lg" htmlFor="date-range">
+            Source
+          </label>
+          <Select
+            name="source"
+            // defaultValue={source}
+            onValueChange={handleFormSubmit}
+          >
+            <SelectTrigger className="w-36" id="date-range">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Newspapers</SelectLabel>
+                {sources.map((source) => (
+                  <SelectItem key={source.value} value={source.value}>
+                    {source.label}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+              <SelectGroup>
+                <SelectLabel>Others</SelectLabel>
+                <SelectItem value={miscSource.value}>
+                  {miscSource.label}
+                </SelectItem>
+              </SelectGroup>
             </SelectContent>
           </Select>
         </div>

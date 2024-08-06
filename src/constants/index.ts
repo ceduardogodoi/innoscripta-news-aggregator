@@ -5,6 +5,23 @@ export const ONE_HOUR_IN_SECONDS = 60 * 60;
 
 export const FALLBACK_SEARCH = "europe";
 
+// Sources
+export const SOURCES = [
+  {
+    label: "Misc",
+    value: "misc",
+  },
+  {
+    label: "The Guardian",
+    value: "the-guardian",
+  },
+  {
+    label: "The New York Times",
+    value: "nyt",
+  },
+] as const;
+
+// Date ranges
 export const DATE_RANGES = [
   {
     value: "any-time",
