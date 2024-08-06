@@ -16,8 +16,8 @@ type NewsApiSourceProps = {
 };
 
 export async function NewsApiSource({ searchParams }: NewsApiSourceProps) {
-  const { q: query, "date-range": dateRange } = searchParams;
-  const response = await fetchNewsApiArticles({ q: query, dateRange });
+  const { q: query, "date-range": dateRange, source } = searchParams;
+  const response = await fetchNewsApiArticles({ q: query, dateRange, source });
 
   return (
     <ArticleList>

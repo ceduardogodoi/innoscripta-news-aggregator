@@ -6,24 +6,40 @@ import { TheGuardianSource } from "@/components/organisms/news-source/the-guardi
 import { NytSouce } from "@/components/organisms/news-source/nyt-source";
 import { SearchAndFilter } from "@/components/molecules/search-and-filter";
 import type { HomePageProps } from "@/app/page";
+import { SOURCES_VALUE_LABEL_MAP } from "@/constants";
 
 type NewsSourceProps = {
   searchParams: HomePageProps["searchParams"];
 };
 
 export function NewsSource({ searchParams }: NewsSourceProps) {
-  const { q: query, "date-range": dateRange } = searchParams;
+  const { q: query, "date-range": dateRange, source } = searchParams;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-[inherit]">
-        <SearchAndFilter defaultValue={query} dateRange={dateRange} />
+        <SearchAndFilter
+          defaultValue={query}
+          dateRange={dateRange}
+          source={source}
+        />
 
         {query != null && query.length > 0 && (
           <p>
             Showing results for: &quot;
             <span className="text-red-700">{query}</span>
             &quot;
+          </p>
+        )}
+
+        {source != null && (
+          <p className="mt-10 text-center text-xl">
+            Showing results from{" "}
+            <span className="text-red-700">
+              {source === "misc"
+                ? "various sources"
+                : SOURCES_VALUE_LABEL_MAP[source]}
+            </span>
           </p>
         )}
       </div>
@@ -59,7 +75,9 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       </Suspense>
 
       {/* News API */}
-      <h2 className="text-lg font-semibold text-red-700">Other sources</h2>
+      <h2 className="text-lg font-semibold text-red-700">
+        {source ? "Miscellaneous" : "Other sources"}
+      </h2>
 
       <Suspense
         fallback={

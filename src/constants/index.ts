@@ -16,10 +16,18 @@ export const SOURCES = [
     value: "the-guardian",
   },
   {
-    label: "The New York Times",
+    label: "New York Times",
     value: "nyt",
   },
 ] as const;
+
+export const SOURCES_VALUE_LABEL_MAP = {
+  [SOURCES[0].value]: SOURCES[0].label,
+  [SOURCES[1].value]: SOURCES[1].label,
+  [SOURCES[2].value]: SOURCES[2].label,
+};
+
+export type SourceValue = (typeof SOURCES)[number]["value"];
 
 // Date ranges
 export const DATE_RANGES = [
@@ -46,6 +54,8 @@ export const DATE_RANGES = [
 ] as const;
 
 export const PAGE_SIZE = 3;
+
+export const SINGLE_SOURCE_PAGE_SIZE = 10;
 
 export type DateRangeValue = (typeof DATE_RANGES)[number]["value"];
 

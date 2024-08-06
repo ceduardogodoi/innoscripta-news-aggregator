@@ -1,10 +1,11 @@
 import {
-  DateRangeValue,
+  type DateRangeValue,
   FALLBACK_SEARCH,
   PAGE_SIZE,
   PAST_MONTH,
   PAST_WEEK,
-  PAST_YEAR,
+  SINGLE_SOURCE_PAGE_SIZE,
+  type SourceValue,
   TODAY,
   YESTERDAY,
 } from "@/constants";
@@ -17,16 +18,18 @@ import {
 type NewsApiFilters = {
   page?: number;
   q?: string;
-  pageSize?: number;
   dateRange?: DateRangeValue;
+  source?: SourceValue;
 };
 
 export async function fetchNewsApiArticles({
   page = 1,
   q = FALLBACK_SEARCH,
-  pageSize = PAGE_SIZE,
   dateRange = "any-time",
+  source,
 }: NewsApiFilters): Promise<NewsApiResponse> {
+  const pageSize = source === "misc" ? SINGLE_SOURCE_PAGE_SIZE : PAGE_SIZE;
+
   const url = new URL("/v2/everything", "https://newsapi.org");
   url.searchParams.append("q", q || FALLBACK_SEARCH);
   url.searchParams.append("pageSize", String(pageSize));
@@ -48,7 +51,6 @@ export async function fetchNewsApiArticles({
       url.searchParams.append("from", PAST_MONTH);
       url.searchParams.append("to", TODAY);
       break;
-      break;
     case "any-time":
     default:
       url.searchParams.delete("from");
@@ -65,7 +67,7 @@ export async function fetchNewsApiArticles({
 
   const articles: NewsApiArticle[] = [];
   for (let i = 0; i < result.articles.length; i++) {
-    if (articles.length > 2) break;
+    if (articles.length > pageSize) break;
 
     if (result.articles[i].urlToImage != null) {
       articles.push(result.articles[i]);

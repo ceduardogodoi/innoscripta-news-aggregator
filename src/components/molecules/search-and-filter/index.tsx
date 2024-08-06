@@ -18,9 +18,14 @@ import { SelectLabel } from "@radix-ui/react-select";
 
 type SearchBarProps = ComponentPropsWithoutRef<typeof Input> & {
   dateRange: HomePageProps["searchParams"]["date-range"];
+  source: HomePageProps["searchParams"]["source"];
 };
 
-export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
+export function SearchAndFilter({
+  dateRange,
+  source,
+  ...props
+}: SearchBarProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [miscSource, ...sources] = SOURCES;
@@ -87,10 +92,10 @@ export function SearchAndFilter({ dateRange, ...props }: SearchBarProps) {
           </label>
           <Select
             name="source"
-            // defaultValue={source}
+            defaultValue={source}
             onValueChange={handleFormSubmit}
           >
-            <SelectTrigger className="w-36" id="date-range">
+            <SelectTrigger className="w-40" id="date-range">
               <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent>
