@@ -11,6 +11,16 @@ export function Navbar({ className, ...props }: NavbarProps) {
       <li className="group inline-flex">
         <Link
           className="ml-auto flex items-center gap-1 border-b border-b-transparent transition-all lg:ml-0 lg:group-hover:border-b-red-500"
+          href="/my-feed"
+          title="Go to your personalized feed"
+        >
+          My feed
+        </Link>
+      </li>
+
+      <li className="group inline-flex">
+        <Link
+          className="ml-auto flex items-center gap-1 border-b border-b-transparent transition-all lg:ml-0 lg:group-hover:border-b-red-500"
           target="_blank"
           href="https://www.theguardian.com/international"
           title="Visit The Guardian's website"

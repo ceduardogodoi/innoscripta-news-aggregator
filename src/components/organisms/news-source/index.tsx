@@ -1,13 +1,10 @@
-import { Suspense } from "react";
-import { ArticleList } from "@/components/organisms/article/article-list";
-import { ArticleSkeleton } from "@/components/organisms/article/article-skeleton";
 import { NewsApiSource } from "@/components/organisms/news-source/news-api-source";
 import { TheGuardianSource } from "@/components/organisms/news-source/the-guardian-source";
-import { NytSouce } from "@/components/organisms/news-source/nyt-source";
+import { NytSource } from "@/components/organisms/news-source/nyt-source";
 import { SearchAndFilter } from "@/components/molecules/search-and-filter";
 import type { HomePageProps } from "@/app/page";
 import { SOURCES_VALUE_LABEL_MAP } from "@/constants";
-import { SourceTitle } from "@/components/atoms/source-title";
+import { Source } from "@/components/molecules/source";
 
 type NewsSourceProps = {
   searchParams: HomePageProps["searchParams"];
@@ -46,63 +43,19 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       </div>
 
       {/* The Guardian */}
-      {(source == "all" || source === "the-guardian") && (
-        <>
-          <SourceTitle sourceValue="the-guardian" />
-
-          <Suspense
-            fallback={
-              <ArticleList>
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-              </ArticleList>
-            }
-          >
-            <TheGuardianSource searchParams={searchParams} />
-          </Suspense>
-        </>
-      )}
+      <Source sourceValue="the-guardian" source={source}>
+        <TheGuardianSource searchParams={searchParams} />
+      </Source>
 
       {/* The New York Times */}
-      {(source == "all" || source === "nyt") && (
-        <>
-          <SourceTitle sourceValue="nyt" />
-
-          <Suspense
-            fallback={
-              <ArticleList>
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-              </ArticleList>
-            }
-          >
-            <NytSouce searchParams={searchParams} />
-          </Suspense>
-        </>
-      )}
+      <Source sourceValue="nyt" source={source}>
+        <NytSource searchParams={searchParams} />
+      </Source>
 
       {/* News API */}
-      {(source == "all" || source === "misc") && (
-        <>
-          <SourceTitle sourceValue="misc">
-            {source ? "Miscellaneous" : "Other sources"}
-          </SourceTitle>
-
-          <Suspense
-            fallback={
-              <ArticleList>
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-                <ArticleSkeleton />
-              </ArticleList>
-            }
-          >
-            <NewsApiSource searchParams={searchParams} />
-          </Suspense>
-        </>
-      )}
+      <Source sourceValue="misc" source={source}>
+        <NewsApiSource searchParams={searchParams} />
+      </Source>
     </div>
   );
 }
