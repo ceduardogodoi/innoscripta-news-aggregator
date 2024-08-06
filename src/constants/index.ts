@@ -19,12 +19,17 @@ export const SOURCES = [
     label: "New York Times",
     value: "nyt",
   },
+  {
+    label: "All sources",
+    value: "all",
+  },
 ] as const;
 
 export const SOURCES_VALUE_LABEL_MAP = {
   [SOURCES[0].value]: SOURCES[0].label,
   [SOURCES[1].value]: SOURCES[1].label,
   [SOURCES[2].value]: SOURCES[2].label,
+  [SOURCES[3].value]: SOURCES[3].label,
 };
 
 export type SourceValue = (typeof SOURCES)[number]["value"];

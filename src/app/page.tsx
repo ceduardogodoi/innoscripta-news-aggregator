@@ -2,7 +2,7 @@ import { NewsSource } from "@/components/organisms/news-source";
 import {
   type DateRangeValue,
   ONE_HOUR_IN_SECONDS,
-  SourceValue,
+  type SourceValue,
 } from "@/constants";
 
 export type HomePageProps = {

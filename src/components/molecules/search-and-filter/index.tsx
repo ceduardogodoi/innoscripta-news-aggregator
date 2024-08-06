@@ -29,6 +29,7 @@ export function SearchAndFilter({
   const formRef = useRef<HTMLFormElement>(null);
 
   const [miscSource, ...sources] = SOURCES;
+  const allSources = SOURCES.at(-1);
 
   function handleFormSubmit() {
     formRef.current?.submit();
@@ -95,17 +96,29 @@ export function SearchAndFilter({
             defaultValue={source}
             onValueChange={handleFormSubmit}
           >
-            <SelectTrigger className="w-40" id="date-range">
+            <SelectTrigger className="w-44" id="date-range">
               <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent>
+              {allSources != null && (
+                <>
+                  <SelectGroup>All sources</SelectGroup>
+                  <SelectItem value={allSources.value}>
+                    {allSources.label}
+                  </SelectItem>
+                </>
+              )}
               <SelectGroup>
                 <SelectLabel>Newspapers</SelectLabel>
-                {sources.map((source) => (
-                  <SelectItem key={source.value} value={source.value}>
-                    {source.label}
-                  </SelectItem>
-                ))}
+                {sources.map((source) => {
+                  if (source.value === "all") return null;
+
+                  return (
+                    <SelectItem key={source.value} value={source.value}>
+                      {source.label}
+                    </SelectItem>
+                  );
+                })}
               </SelectGroup>
               <SelectGroup>
                 <SelectLabel>Others</SelectLabel>

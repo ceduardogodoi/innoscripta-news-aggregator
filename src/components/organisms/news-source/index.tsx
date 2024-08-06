@@ -13,7 +13,7 @@ type NewsSourceProps = {
 };
 
 export function NewsSource({ searchParams }: NewsSourceProps) {
-  const { q: query, "date-range": dateRange, source } = searchParams;
+  const { q: query, "date-range": dateRange, source = "all" } = searchParams;
 
   return (
     <div className="flex flex-col gap-4">
@@ -32,9 +32,9 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
           </p>
         )}
 
-        {source != null && (
+        {source != null && source !== "all" && (
           <p className="mt-10 text-center text-xl">
-            Showing results from{" "}
+            Source:{" "}
             <span className="text-red-700">
               {source === "misc"
                 ? "various sources"
@@ -45,7 +45,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       </div>
 
       {/* The Guardian */}
-      {(source == null || source === "the-guardian") && (
+      {(source == "all" || source === "the-guardian") && (
         <>
           <h2 className="text-lg font-semibold text-red-700">The Guardian</h2>
 
@@ -64,7 +64,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       )}
 
       {/* The New York Times */}
-      {(source == null || source === "nyt") && (
+      {(source == "all" || source === "nyt") && (
         <>
           <h2 className="text-lg font-semibold text-red-700">
             The New York Times
@@ -85,7 +85,7 @@ export function NewsSource({ searchParams }: NewsSourceProps) {
       )}
 
       {/* News API */}
-      {(source == null || source === "misc") && (
+      {(source == "all" || source === "misc") && (
         <>
           <h2 className="text-lg font-semibold text-red-700">
             {source ? "Miscellaneous" : "Other sources"}
