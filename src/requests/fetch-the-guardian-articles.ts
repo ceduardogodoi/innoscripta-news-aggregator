@@ -1,7 +1,7 @@
-import dayjs from "dayjs";
 import {
   DateRangeValue,
   FALLBACK_SEARCH,
+  PAGE_SIZE,
   PAST_MONTH,
   PAST_WEEK,
   TODAY,
@@ -22,7 +22,7 @@ type TheGuardianFilters = {
 export async function fetchTheGuardianArticles({
   page = 1,
   q = FALLBACK_SEARCH,
-  pageSize = 3,
+  pageSize = PAGE_SIZE,
   dateRange = "any-time",
 }: TheGuardianFilters): Promise<TheGuardianResponse> {
   const url = new URL("/search", "https://content.guardianapis.com");

@@ -18,8 +18,8 @@ type NytSourceProps = {
 };
 
 export async function NytSouce({ searchParams }: NytSourceProps) {
-  const { q: query } = searchParams;
-  const data = await fetchTheNewYorkTimesArticles(query);
+  const { q: query, "date-range": dateRange } = searchParams;
+  const data = await fetchTheNewYorkTimesArticles({ q: query, dateRange });
 
   return (
     <ArticleList>
