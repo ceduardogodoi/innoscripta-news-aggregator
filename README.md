@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The News Aggregator app
+
+This app was built using Next.js.
 
 ## Getting Started
 
-First, run the development server:
+First, clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/your-repo-name.git
+
+cd your-repo-name
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You will first need API keys from `News API`, `The Guardian API`, and `New York Times API`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Please follow their documentation to get an API Key:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [News API](https://newsapi.org/docs/get-started)
+- [The Guardian API](https://open-platform.theguardian.com/access/)
+- [New York Times API](https://developer.nytimes.com/apis)
 
-## Learn More
+Now, with the API keys ready, you'll need to fill out the environment variables `API keys` keys accordingly.
 
-To learn more about Next.js, take a look at the following resources:
+First, make a copy of the `.env.example` file and rename it to `.env.local`, and open `.env.local`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+# News API
+NEWS_API_KEY="<your key for News API>"
+# The Guardian API
+THE_GUARDIAN_API_KEY="<your key for The Guardian>"
+# New York Times API
+NYT_API_KEY="<your key for New York Times>"
+NYT_API_SECRET="<your secret for News API>"
+NYT_APP_ID="<your app id for News API>"
+```
