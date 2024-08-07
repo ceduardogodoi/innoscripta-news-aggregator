@@ -12,7 +12,7 @@ type NewsSourceProps = {
 
 export function NewsSource({ searchParams }: NewsSourceProps) {
   const { q: query, "date-range": dateRange, source = "all" } = searchParams;
-
+  
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-[inherit]">

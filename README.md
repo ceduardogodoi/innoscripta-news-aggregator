@@ -43,6 +43,28 @@ npm run dev
 
 If you have correctly configured the previous step you will have the app up and running.
 
-Open a browser of you preference and go to [http://localhost:3000](http://localhost:3000); you will see the app running:
+Open a browser of your preference and go to [http://localhost:3000](http://localhost:3000); you will see the app running:
 
 ![App Running](https://github.com/user-attachments/assets/d2822cb8-9867-4479-bd05-a8b56b376ec8)
+
+## Running the app with docker
+
+For this step, you will need to have docker installed on your machine.
+
+Go to the project's directory and `cd` into it.
+
+```bash
+cd innoscripta-news-aggregator
+```
+
+Within the project folder, build the docker image:
+
+```bash
+docker build -t news-aggregator-app .
+```
+
+Now that we have a docker image of our app, it is time to run a container with that image:
+
+```bash
+docker run --name news-aggregator-app -p 3000:3000 -v /app/node_modules -v.:/app news-aggregator-app
+```
