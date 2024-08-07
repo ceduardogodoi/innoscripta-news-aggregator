@@ -1,5 +1,7 @@
 "use client";
 
+import { TrashIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -12,8 +14,6 @@ import {
 } from "@/components/ui/table";
 import { SOURCES_VALUE_LABEL_MAP, SourceValue } from "@/constants";
 import { storage } from "@/utils/storage";
-import { TrashIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export function FavoriteSources() {
   const [favoriteSources, setFavoriteSources] = useState<SourceValue[]>([]);
