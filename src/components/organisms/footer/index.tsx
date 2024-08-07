@@ -4,7 +4,7 @@ import { ContentWrapper } from "../content-wrapper";
 
 export function Footer() {
   return (
-    <footer className="bg-blue-950 text-white">
+    <footer className="mt-auto bg-blue-950 text-white">
       <ContentWrapper className="flex flex-col items-stretch gap-4 lg:flex-row lg:py-10">
         <ul>
           <li>

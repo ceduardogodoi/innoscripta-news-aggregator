@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { Header } from "@/components/organisms/header";
 import { ContentWrapper } from "@/components/organisms/content-wrapper";
 import { Footer } from "@/components/organisms/footer";
+import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 const poppins = Poppins({
@@ -21,8 +22,8 @@ type RootLayoutProps = Readonly<PropsWithChildren>;
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
+    <html lang="en" className="h-screen">
+      <body className={cn(poppins.className, "h-screen flex flex-col")}>
         <Header />
 
         <main>

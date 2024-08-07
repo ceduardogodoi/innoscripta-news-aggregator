@@ -1,11 +1,13 @@
 import { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { ExternalLinkIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-type NavbarProps = ComponentPropsWithoutRef<"ul">;
+type NavbarProps = ComponentPropsWithoutRef<"ul"> & {
+  onCloseMenu: () => void;
+};
 
-export function Navbar({ className, ...props }: NavbarProps) {
+export function Navbar({ className, onCloseMenu, ...props }: NavbarProps) {
   return (
     <ul {...props} className={cn("hidden gap-[inherit] lg:flex", className)}>
       <li className="group inline-flex">
@@ -13,6 +15,7 @@ export function Navbar({ className, ...props }: NavbarProps) {
           className="ml-auto flex items-center gap-1 border-b border-b-transparent transition-all lg:ml-0 lg:group-hover:border-b-red-500"
           href="/my-feed"
           title="Go to your personalized feed"
+          onClick={onCloseMenu}
         >
           My feed
         </Link>
@@ -24,6 +27,7 @@ export function Navbar({ className, ...props }: NavbarProps) {
           target="_blank"
           href="https://www.theguardian.com/international"
           title="Visit The Guardian's website"
+          onClick={onCloseMenu}
         >
           The Guardian
           <ExternalLinkIcon size={16} />
@@ -36,6 +40,7 @@ export function Navbar({ className, ...props }: NavbarProps) {
           target="_blank"
           href="https://www.nytimes.com/"
           title="Visit New York Times' website"
+          onClick={onCloseMenu}
         >
           New York Times
           <ExternalLinkIcon size={16} />

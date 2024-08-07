@@ -13,6 +13,12 @@ export const storage = {
     const favoriteSources = JSON.parse(str);
     return favoriteSourcesFromStorageSchema.parse(favoriteSources);
   },
+
+  setFavoriteSources(sources: SourceValue[]) {
+    const sourcesStr = JSON.stringify(sources);
+    window.localStorage.setItem(APP_KEY, sourcesStr);
+  },
+
   addFavoriteSource(source: SourceValue): void {
     const favoriteSources = this.getFavoriteSources();
     favoriteSources.push(source);
