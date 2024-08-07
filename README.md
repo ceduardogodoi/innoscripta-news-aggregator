@@ -7,9 +7,9 @@ This app was built using Next.js.
 First, clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/ceduardogodoi/innoscripta-news-aggregator
 
-cd your-repo-name
+cd innoscripta-news-aggregator
 ```
 
 You will first need API keys from `News API`, `The Guardian API`, and `New York Times API`.
@@ -34,3 +34,15 @@ NYT_API_KEY="<your key for New York Times>"
 NYT_API_SECRET="<your secret for News API>"
 NYT_APP_ID="<your app id for News API>"
 ```
+
+## Running the app locally
+
+```bash
+npm run dev
+```
+
+If you have correctly configured the previous step you will have the app up and running.
+
+Open a browser of you preference and go to [http://localhost:3000](http://localhost:3000); you will see the app running:
+
+![App Running](https://github.com/user-attachments/assets/d2822cb8-9867-4479-bd05-a8b56b376ec8)
